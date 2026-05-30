@@ -397,48 +397,6 @@ export type OrderItemSumOrderByAggregateInput = {
   subtotal?: Prisma.SortOrder
 }
 
-export type OrderItemCreateNestedManyWithoutMealInput = {
-  create?: Prisma.XOR<Prisma.OrderItemCreateWithoutMealInput, Prisma.OrderItemUncheckedCreateWithoutMealInput> | Prisma.OrderItemCreateWithoutMealInput[] | Prisma.OrderItemUncheckedCreateWithoutMealInput[]
-  connectOrCreate?: Prisma.OrderItemCreateOrConnectWithoutMealInput | Prisma.OrderItemCreateOrConnectWithoutMealInput[]
-  createMany?: Prisma.OrderItemCreateManyMealInputEnvelope
-  connect?: Prisma.OrderItemWhereUniqueInput | Prisma.OrderItemWhereUniqueInput[]
-}
-
-export type OrderItemUncheckedCreateNestedManyWithoutMealInput = {
-  create?: Prisma.XOR<Prisma.OrderItemCreateWithoutMealInput, Prisma.OrderItemUncheckedCreateWithoutMealInput> | Prisma.OrderItemCreateWithoutMealInput[] | Prisma.OrderItemUncheckedCreateWithoutMealInput[]
-  connectOrCreate?: Prisma.OrderItemCreateOrConnectWithoutMealInput | Prisma.OrderItemCreateOrConnectWithoutMealInput[]
-  createMany?: Prisma.OrderItemCreateManyMealInputEnvelope
-  connect?: Prisma.OrderItemWhereUniqueInput | Prisma.OrderItemWhereUniqueInput[]
-}
-
-export type OrderItemUpdateManyWithoutMealNestedInput = {
-  create?: Prisma.XOR<Prisma.OrderItemCreateWithoutMealInput, Prisma.OrderItemUncheckedCreateWithoutMealInput> | Prisma.OrderItemCreateWithoutMealInput[] | Prisma.OrderItemUncheckedCreateWithoutMealInput[]
-  connectOrCreate?: Prisma.OrderItemCreateOrConnectWithoutMealInput | Prisma.OrderItemCreateOrConnectWithoutMealInput[]
-  upsert?: Prisma.OrderItemUpsertWithWhereUniqueWithoutMealInput | Prisma.OrderItemUpsertWithWhereUniqueWithoutMealInput[]
-  createMany?: Prisma.OrderItemCreateManyMealInputEnvelope
-  set?: Prisma.OrderItemWhereUniqueInput | Prisma.OrderItemWhereUniqueInput[]
-  disconnect?: Prisma.OrderItemWhereUniqueInput | Prisma.OrderItemWhereUniqueInput[]
-  delete?: Prisma.OrderItemWhereUniqueInput | Prisma.OrderItemWhereUniqueInput[]
-  connect?: Prisma.OrderItemWhereUniqueInput | Prisma.OrderItemWhereUniqueInput[]
-  update?: Prisma.OrderItemUpdateWithWhereUniqueWithoutMealInput | Prisma.OrderItemUpdateWithWhereUniqueWithoutMealInput[]
-  updateMany?: Prisma.OrderItemUpdateManyWithWhereWithoutMealInput | Prisma.OrderItemUpdateManyWithWhereWithoutMealInput[]
-  deleteMany?: Prisma.OrderItemScalarWhereInput | Prisma.OrderItemScalarWhereInput[]
-}
-
-export type OrderItemUncheckedUpdateManyWithoutMealNestedInput = {
-  create?: Prisma.XOR<Prisma.OrderItemCreateWithoutMealInput, Prisma.OrderItemUncheckedCreateWithoutMealInput> | Prisma.OrderItemCreateWithoutMealInput[] | Prisma.OrderItemUncheckedCreateWithoutMealInput[]
-  connectOrCreate?: Prisma.OrderItemCreateOrConnectWithoutMealInput | Prisma.OrderItemCreateOrConnectWithoutMealInput[]
-  upsert?: Prisma.OrderItemUpsertWithWhereUniqueWithoutMealInput | Prisma.OrderItemUpsertWithWhereUniqueWithoutMealInput[]
-  createMany?: Prisma.OrderItemCreateManyMealInputEnvelope
-  set?: Prisma.OrderItemWhereUniqueInput | Prisma.OrderItemWhereUniqueInput[]
-  disconnect?: Prisma.OrderItemWhereUniqueInput | Prisma.OrderItemWhereUniqueInput[]
-  delete?: Prisma.OrderItemWhereUniqueInput | Prisma.OrderItemWhereUniqueInput[]
-  connect?: Prisma.OrderItemWhereUniqueInput | Prisma.OrderItemWhereUniqueInput[]
-  update?: Prisma.OrderItemUpdateWithWhereUniqueWithoutMealInput | Prisma.OrderItemUpdateWithWhereUniqueWithoutMealInput[]
-  updateMany?: Prisma.OrderItemUpdateManyWithWhereWithoutMealInput | Prisma.OrderItemUpdateManyWithWhereWithoutMealInput[]
-  deleteMany?: Prisma.OrderItemScalarWhereInput | Prisma.OrderItemScalarWhereInput[]
-}
-
 export type OrderItemCreateNestedManyWithoutOrderInput = {
   create?: Prisma.XOR<Prisma.OrderItemCreateWithoutOrderInput, Prisma.OrderItemUncheckedCreateWithoutOrderInput> | Prisma.OrderItemCreateWithoutOrderInput[] | Prisma.OrderItemUncheckedCreateWithoutOrderInput[]
   connectOrCreate?: Prisma.OrderItemCreateOrConnectWithoutOrderInput | Prisma.OrderItemCreateOrConnectWithoutOrderInput[]
@@ -481,58 +439,46 @@ export type OrderItemUncheckedUpdateManyWithoutOrderNestedInput = {
   deleteMany?: Prisma.OrderItemScalarWhereInput | Prisma.OrderItemScalarWhereInput[]
 }
 
-export type OrderItemCreateWithoutMealInput = {
-  id?: string
-  quantity: number
-  unitPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
-  subtotal: runtime.Decimal | runtime.DecimalJsLike | number | string
-  order: Prisma.OrderCreateNestedOneWithoutOrderItemsInput
+export type OrderItemCreateNestedManyWithoutMealInput = {
+  create?: Prisma.XOR<Prisma.OrderItemCreateWithoutMealInput, Prisma.OrderItemUncheckedCreateWithoutMealInput> | Prisma.OrderItemCreateWithoutMealInput[] | Prisma.OrderItemUncheckedCreateWithoutMealInput[]
+  connectOrCreate?: Prisma.OrderItemCreateOrConnectWithoutMealInput | Prisma.OrderItemCreateOrConnectWithoutMealInput[]
+  createMany?: Prisma.OrderItemCreateManyMealInputEnvelope
+  connect?: Prisma.OrderItemWhereUniqueInput | Prisma.OrderItemWhereUniqueInput[]
 }
 
-export type OrderItemUncheckedCreateWithoutMealInput = {
-  id?: string
-  orderId: string
-  quantity: number
-  unitPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
-  subtotal: runtime.Decimal | runtime.DecimalJsLike | number | string
+export type OrderItemUncheckedCreateNestedManyWithoutMealInput = {
+  create?: Prisma.XOR<Prisma.OrderItemCreateWithoutMealInput, Prisma.OrderItemUncheckedCreateWithoutMealInput> | Prisma.OrderItemCreateWithoutMealInput[] | Prisma.OrderItemUncheckedCreateWithoutMealInput[]
+  connectOrCreate?: Prisma.OrderItemCreateOrConnectWithoutMealInput | Prisma.OrderItemCreateOrConnectWithoutMealInput[]
+  createMany?: Prisma.OrderItemCreateManyMealInputEnvelope
+  connect?: Prisma.OrderItemWhereUniqueInput | Prisma.OrderItemWhereUniqueInput[]
 }
 
-export type OrderItemCreateOrConnectWithoutMealInput = {
-  where: Prisma.OrderItemWhereUniqueInput
-  create: Prisma.XOR<Prisma.OrderItemCreateWithoutMealInput, Prisma.OrderItemUncheckedCreateWithoutMealInput>
+export type OrderItemUpdateManyWithoutMealNestedInput = {
+  create?: Prisma.XOR<Prisma.OrderItemCreateWithoutMealInput, Prisma.OrderItemUncheckedCreateWithoutMealInput> | Prisma.OrderItemCreateWithoutMealInput[] | Prisma.OrderItemUncheckedCreateWithoutMealInput[]
+  connectOrCreate?: Prisma.OrderItemCreateOrConnectWithoutMealInput | Prisma.OrderItemCreateOrConnectWithoutMealInput[]
+  upsert?: Prisma.OrderItemUpsertWithWhereUniqueWithoutMealInput | Prisma.OrderItemUpsertWithWhereUniqueWithoutMealInput[]
+  createMany?: Prisma.OrderItemCreateManyMealInputEnvelope
+  set?: Prisma.OrderItemWhereUniqueInput | Prisma.OrderItemWhereUniqueInput[]
+  disconnect?: Prisma.OrderItemWhereUniqueInput | Prisma.OrderItemWhereUniqueInput[]
+  delete?: Prisma.OrderItemWhereUniqueInput | Prisma.OrderItemWhereUniqueInput[]
+  connect?: Prisma.OrderItemWhereUniqueInput | Prisma.OrderItemWhereUniqueInput[]
+  update?: Prisma.OrderItemUpdateWithWhereUniqueWithoutMealInput | Prisma.OrderItemUpdateWithWhereUniqueWithoutMealInput[]
+  updateMany?: Prisma.OrderItemUpdateManyWithWhereWithoutMealInput | Prisma.OrderItemUpdateManyWithWhereWithoutMealInput[]
+  deleteMany?: Prisma.OrderItemScalarWhereInput | Prisma.OrderItemScalarWhereInput[]
 }
 
-export type OrderItemCreateManyMealInputEnvelope = {
-  data: Prisma.OrderItemCreateManyMealInput | Prisma.OrderItemCreateManyMealInput[]
-  skipDuplicates?: boolean
-}
-
-export type OrderItemUpsertWithWhereUniqueWithoutMealInput = {
-  where: Prisma.OrderItemWhereUniqueInput
-  update: Prisma.XOR<Prisma.OrderItemUpdateWithoutMealInput, Prisma.OrderItemUncheckedUpdateWithoutMealInput>
-  create: Prisma.XOR<Prisma.OrderItemCreateWithoutMealInput, Prisma.OrderItemUncheckedCreateWithoutMealInput>
-}
-
-export type OrderItemUpdateWithWhereUniqueWithoutMealInput = {
-  where: Prisma.OrderItemWhereUniqueInput
-  data: Prisma.XOR<Prisma.OrderItemUpdateWithoutMealInput, Prisma.OrderItemUncheckedUpdateWithoutMealInput>
-}
-
-export type OrderItemUpdateManyWithWhereWithoutMealInput = {
-  where: Prisma.OrderItemScalarWhereInput
-  data: Prisma.XOR<Prisma.OrderItemUpdateManyMutationInput, Prisma.OrderItemUncheckedUpdateManyWithoutMealInput>
-}
-
-export type OrderItemScalarWhereInput = {
-  AND?: Prisma.OrderItemScalarWhereInput | Prisma.OrderItemScalarWhereInput[]
-  OR?: Prisma.OrderItemScalarWhereInput[]
-  NOT?: Prisma.OrderItemScalarWhereInput | Prisma.OrderItemScalarWhereInput[]
-  id?: Prisma.StringFilter<"OrderItem"> | string
-  orderId?: Prisma.StringFilter<"OrderItem"> | string
-  mealId?: Prisma.StringFilter<"OrderItem"> | string
-  quantity?: Prisma.IntFilter<"OrderItem"> | number
-  unitPrice?: Prisma.DecimalFilter<"OrderItem"> | runtime.Decimal | runtime.DecimalJsLike | number | string
-  subtotal?: Prisma.DecimalFilter<"OrderItem"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+export type OrderItemUncheckedUpdateManyWithoutMealNestedInput = {
+  create?: Prisma.XOR<Prisma.OrderItemCreateWithoutMealInput, Prisma.OrderItemUncheckedCreateWithoutMealInput> | Prisma.OrderItemCreateWithoutMealInput[] | Prisma.OrderItemUncheckedCreateWithoutMealInput[]
+  connectOrCreate?: Prisma.OrderItemCreateOrConnectWithoutMealInput | Prisma.OrderItemCreateOrConnectWithoutMealInput[]
+  upsert?: Prisma.OrderItemUpsertWithWhereUniqueWithoutMealInput | Prisma.OrderItemUpsertWithWhereUniqueWithoutMealInput[]
+  createMany?: Prisma.OrderItemCreateManyMealInputEnvelope
+  set?: Prisma.OrderItemWhereUniqueInput | Prisma.OrderItemWhereUniqueInput[]
+  disconnect?: Prisma.OrderItemWhereUniqueInput | Prisma.OrderItemWhereUniqueInput[]
+  delete?: Prisma.OrderItemWhereUniqueInput | Prisma.OrderItemWhereUniqueInput[]
+  connect?: Prisma.OrderItemWhereUniqueInput | Prisma.OrderItemWhereUniqueInput[]
+  update?: Prisma.OrderItemUpdateWithWhereUniqueWithoutMealInput | Prisma.OrderItemUpdateWithWhereUniqueWithoutMealInput[]
+  updateMany?: Prisma.OrderItemUpdateManyWithWhereWithoutMealInput | Prisma.OrderItemUpdateManyWithWhereWithoutMealInput[]
+  deleteMany?: Prisma.OrderItemScalarWhereInput | Prisma.OrderItemScalarWhereInput[]
 }
 
 export type OrderItemCreateWithoutOrderInput = {
@@ -577,7 +523,27 @@ export type OrderItemUpdateManyWithWhereWithoutOrderInput = {
   data: Prisma.XOR<Prisma.OrderItemUpdateManyMutationInput, Prisma.OrderItemUncheckedUpdateManyWithoutOrderInput>
 }
 
-export type OrderItemCreateManyMealInput = {
+export type OrderItemScalarWhereInput = {
+  AND?: Prisma.OrderItemScalarWhereInput | Prisma.OrderItemScalarWhereInput[]
+  OR?: Prisma.OrderItemScalarWhereInput[]
+  NOT?: Prisma.OrderItemScalarWhereInput | Prisma.OrderItemScalarWhereInput[]
+  id?: Prisma.StringFilter<"OrderItem"> | string
+  orderId?: Prisma.StringFilter<"OrderItem"> | string
+  mealId?: Prisma.StringFilter<"OrderItem"> | string
+  quantity?: Prisma.IntFilter<"OrderItem"> | number
+  unitPrice?: Prisma.DecimalFilter<"OrderItem"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  subtotal?: Prisma.DecimalFilter<"OrderItem"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+}
+
+export type OrderItemCreateWithoutMealInput = {
+  id?: string
+  quantity: number
+  unitPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
+  subtotal: runtime.Decimal | runtime.DecimalJsLike | number | string
+  order: Prisma.OrderCreateNestedOneWithoutOrderItemsInput
+}
+
+export type OrderItemUncheckedCreateWithoutMealInput = {
   id?: string
   orderId: string
   quantity: number
@@ -585,28 +551,30 @@ export type OrderItemCreateManyMealInput = {
   subtotal: runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
-export type OrderItemUpdateWithoutMealInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  quantity?: Prisma.IntFieldUpdateOperationsInput | number
-  unitPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  order?: Prisma.OrderUpdateOneRequiredWithoutOrderItemsNestedInput
+export type OrderItemCreateOrConnectWithoutMealInput = {
+  where: Prisma.OrderItemWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrderItemCreateWithoutMealInput, Prisma.OrderItemUncheckedCreateWithoutMealInput>
 }
 
-export type OrderItemUncheckedUpdateWithoutMealInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  orderId?: Prisma.StringFieldUpdateOperationsInput | string
-  quantity?: Prisma.IntFieldUpdateOperationsInput | number
-  unitPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+export type OrderItemCreateManyMealInputEnvelope = {
+  data: Prisma.OrderItemCreateManyMealInput | Prisma.OrderItemCreateManyMealInput[]
+  skipDuplicates?: boolean
 }
 
-export type OrderItemUncheckedUpdateManyWithoutMealInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  orderId?: Prisma.StringFieldUpdateOperationsInput | string
-  quantity?: Prisma.IntFieldUpdateOperationsInput | number
-  unitPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+export type OrderItemUpsertWithWhereUniqueWithoutMealInput = {
+  where: Prisma.OrderItemWhereUniqueInput
+  update: Prisma.XOR<Prisma.OrderItemUpdateWithoutMealInput, Prisma.OrderItemUncheckedUpdateWithoutMealInput>
+  create: Prisma.XOR<Prisma.OrderItemCreateWithoutMealInput, Prisma.OrderItemUncheckedCreateWithoutMealInput>
+}
+
+export type OrderItemUpdateWithWhereUniqueWithoutMealInput = {
+  where: Prisma.OrderItemWhereUniqueInput
+  data: Prisma.XOR<Prisma.OrderItemUpdateWithoutMealInput, Prisma.OrderItemUncheckedUpdateWithoutMealInput>
+}
+
+export type OrderItemUpdateManyWithWhereWithoutMealInput = {
+  where: Prisma.OrderItemScalarWhereInput
+  data: Prisma.XOR<Prisma.OrderItemUpdateManyMutationInput, Prisma.OrderItemUncheckedUpdateManyWithoutMealInput>
 }
 
 export type OrderItemCreateManyOrderInput = {
@@ -636,6 +604,38 @@ export type OrderItemUncheckedUpdateWithoutOrderInput = {
 export type OrderItemUncheckedUpdateManyWithoutOrderInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   mealId?: Prisma.StringFieldUpdateOperationsInput | string
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
+  unitPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+}
+
+export type OrderItemCreateManyMealInput = {
+  id?: string
+  orderId: string
+  quantity: number
+  unitPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
+  subtotal: runtime.Decimal | runtime.DecimalJsLike | number | string
+}
+
+export type OrderItemUpdateWithoutMealInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
+  unitPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  order?: Prisma.OrderUpdateOneRequiredWithoutOrderItemsNestedInput
+}
+
+export type OrderItemUncheckedUpdateWithoutMealInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  orderId?: Prisma.StringFieldUpdateOperationsInput | string
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
+  unitPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+}
+
+export type OrderItemUncheckedUpdateManyWithoutMealInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  orderId?: Prisma.StringFieldUpdateOperationsInput | string
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   unitPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string

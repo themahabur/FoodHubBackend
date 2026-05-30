@@ -509,6 +509,11 @@ export type MealOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
 }
 
+export type MealScalarRelationFilter = {
+  is?: Prisma.MealWhereInput
+  isNot?: Prisma.MealWhereInput
+}
+
 export type MealCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   providerId?: Prisma.SortOrder
@@ -571,11 +576,6 @@ export type MealSumOrderByAggregateInput = {
   rating?: Prisma.SortOrder
 }
 
-export type MealScalarRelationFilter = {
-  is?: Prisma.MealWhereInput
-  isNot?: Prisma.MealWhereInput
-}
-
 export type MealCreateNestedManyWithoutProviderInput = {
   create?: Prisma.XOR<Prisma.MealCreateWithoutProviderInput, Prisma.MealUncheckedCreateWithoutProviderInput> | Prisma.MealCreateWithoutProviderInput[] | Prisma.MealUncheckedCreateWithoutProviderInput[]
   connectOrCreate?: Prisma.MealCreateOrConnectWithoutProviderInput | Prisma.MealCreateOrConnectWithoutProviderInput[]
@@ -618,20 +618,32 @@ export type MealUncheckedUpdateManyWithoutProviderNestedInput = {
   deleteMany?: Prisma.MealScalarWhereInput | Prisma.MealScalarWhereInput[]
 }
 
-export type DecimalFieldUpdateOperationsInput = {
-  set?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  increment?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  decrement?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  multiply?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  divide?: runtime.Decimal | runtime.DecimalJsLike | number | string
+export type MealCreateNestedOneWithoutReviewsInput = {
+  create?: Prisma.XOR<Prisma.MealCreateWithoutReviewsInput, Prisma.MealUncheckedCreateWithoutReviewsInput>
+  connectOrCreate?: Prisma.MealCreateOrConnectWithoutReviewsInput
+  connect?: Prisma.MealWhereUniqueInput
 }
 
-export type IntFieldUpdateOperationsInput = {
-  set?: number
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
+export type MealUpdateOneRequiredWithoutReviewsNestedInput = {
+  create?: Prisma.XOR<Prisma.MealCreateWithoutReviewsInput, Prisma.MealUncheckedCreateWithoutReviewsInput>
+  connectOrCreate?: Prisma.MealCreateOrConnectWithoutReviewsInput
+  upsert?: Prisma.MealUpsertWithoutReviewsInput
+  connect?: Prisma.MealWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.MealUpdateToOneWithWhereWithoutReviewsInput, Prisma.MealUpdateWithoutReviewsInput>, Prisma.MealUncheckedUpdateWithoutReviewsInput>
+}
+
+export type MealCreateNestedOneWithoutOrderItemsInput = {
+  create?: Prisma.XOR<Prisma.MealCreateWithoutOrderItemsInput, Prisma.MealUncheckedCreateWithoutOrderItemsInput>
+  connectOrCreate?: Prisma.MealCreateOrConnectWithoutOrderItemsInput
+  connect?: Prisma.MealWhereUniqueInput
+}
+
+export type MealUpdateOneRequiredWithoutOrderItemsNestedInput = {
+  create?: Prisma.XOR<Prisma.MealCreateWithoutOrderItemsInput, Prisma.MealUncheckedCreateWithoutOrderItemsInput>
+  connectOrCreate?: Prisma.MealCreateOrConnectWithoutOrderItemsInput
+  upsert?: Prisma.MealUpsertWithoutOrderItemsInput
+  connect?: Prisma.MealWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.MealUpdateToOneWithWhereWithoutOrderItemsInput, Prisma.MealUpdateWithoutOrderItemsInput>, Prisma.MealUncheckedUpdateWithoutOrderItemsInput>
 }
 
 export type NullableFloatFieldUpdateOperationsInput = {
@@ -682,34 +694,6 @@ export type MealUncheckedUpdateManyWithoutCategoryNestedInput = {
   update?: Prisma.MealUpdateWithWhereUniqueWithoutCategoryInput | Prisma.MealUpdateWithWhereUniqueWithoutCategoryInput[]
   updateMany?: Prisma.MealUpdateManyWithWhereWithoutCategoryInput | Prisma.MealUpdateManyWithWhereWithoutCategoryInput[]
   deleteMany?: Prisma.MealScalarWhereInput | Prisma.MealScalarWhereInput[]
-}
-
-export type MealCreateNestedOneWithoutReviewsInput = {
-  create?: Prisma.XOR<Prisma.MealCreateWithoutReviewsInput, Prisma.MealUncheckedCreateWithoutReviewsInput>
-  connectOrCreate?: Prisma.MealCreateOrConnectWithoutReviewsInput
-  connect?: Prisma.MealWhereUniqueInput
-}
-
-export type MealUpdateOneRequiredWithoutReviewsNestedInput = {
-  create?: Prisma.XOR<Prisma.MealCreateWithoutReviewsInput, Prisma.MealUncheckedCreateWithoutReviewsInput>
-  connectOrCreate?: Prisma.MealCreateOrConnectWithoutReviewsInput
-  upsert?: Prisma.MealUpsertWithoutReviewsInput
-  connect?: Prisma.MealWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.MealUpdateToOneWithWhereWithoutReviewsInput, Prisma.MealUpdateWithoutReviewsInput>, Prisma.MealUncheckedUpdateWithoutReviewsInput>
-}
-
-export type MealCreateNestedOneWithoutOrderItemsInput = {
-  create?: Prisma.XOR<Prisma.MealCreateWithoutOrderItemsInput, Prisma.MealUncheckedCreateWithoutOrderItemsInput>
-  connectOrCreate?: Prisma.MealCreateOrConnectWithoutOrderItemsInput
-  connect?: Prisma.MealWhereUniqueInput
-}
-
-export type MealUpdateOneRequiredWithoutOrderItemsNestedInput = {
-  create?: Prisma.XOR<Prisma.MealCreateWithoutOrderItemsInput, Prisma.MealUncheckedCreateWithoutOrderItemsInput>
-  connectOrCreate?: Prisma.MealCreateOrConnectWithoutOrderItemsInput
-  upsert?: Prisma.MealUpsertWithoutOrderItemsInput
-  connect?: Prisma.MealWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.MealUpdateToOneWithWhereWithoutOrderItemsInput, Prisma.MealUpdateWithoutOrderItemsInput>, Prisma.MealUncheckedUpdateWithoutOrderItemsInput>
 }
 
 export type MealCreateWithoutProviderInput = {
@@ -789,66 +773,6 @@ export type MealScalarWhereInput = {
   rating?: Prisma.FloatNullableFilter<"Meal"> | number | null
   createdAt?: Prisma.DateTimeFilter<"Meal"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Meal"> | Date | string
-}
-
-export type MealCreateWithoutCategoryInput = {
-  id?: string
-  title: string
-  description?: string | null
-  image?: string | null
-  price: runtime.Decimal | runtime.DecimalJsLike | number | string
-  stock: number
-  isAvailable?: boolean
-  preparationTime: number
-  rating?: number | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  provider: Prisma.ProviderProfileCreateNestedOneWithoutMealsInput
-  reviews?: Prisma.ReviewCreateNestedManyWithoutMealInput
-  orderItems?: Prisma.OrderItemCreateNestedManyWithoutMealInput
-}
-
-export type MealUncheckedCreateWithoutCategoryInput = {
-  id?: string
-  providerId: string
-  title: string
-  description?: string | null
-  image?: string | null
-  price: runtime.Decimal | runtime.DecimalJsLike | number | string
-  stock: number
-  isAvailable?: boolean
-  preparationTime: number
-  rating?: number | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutMealInput
-  orderItems?: Prisma.OrderItemUncheckedCreateNestedManyWithoutMealInput
-}
-
-export type MealCreateOrConnectWithoutCategoryInput = {
-  where: Prisma.MealWhereUniqueInput
-  create: Prisma.XOR<Prisma.MealCreateWithoutCategoryInput, Prisma.MealUncheckedCreateWithoutCategoryInput>
-}
-
-export type MealCreateManyCategoryInputEnvelope = {
-  data: Prisma.MealCreateManyCategoryInput | Prisma.MealCreateManyCategoryInput[]
-  skipDuplicates?: boolean
-}
-
-export type MealUpsertWithWhereUniqueWithoutCategoryInput = {
-  where: Prisma.MealWhereUniqueInput
-  update: Prisma.XOR<Prisma.MealUpdateWithoutCategoryInput, Prisma.MealUncheckedUpdateWithoutCategoryInput>
-  create: Prisma.XOR<Prisma.MealCreateWithoutCategoryInput, Prisma.MealUncheckedCreateWithoutCategoryInput>
-}
-
-export type MealUpdateWithWhereUniqueWithoutCategoryInput = {
-  where: Prisma.MealWhereUniqueInput
-  data: Prisma.XOR<Prisma.MealUpdateWithoutCategoryInput, Prisma.MealUncheckedUpdateWithoutCategoryInput>
-}
-
-export type MealUpdateManyWithWhereWithoutCategoryInput = {
-  where: Prisma.MealScalarWhereInput
-  data: Prisma.XOR<Prisma.MealUpdateManyMutationInput, Prisma.MealUncheckedUpdateManyWithoutCategoryInput>
 }
 
 export type MealCreateWithoutReviewsInput = {
@@ -1017,6 +941,66 @@ export type MealUncheckedUpdateWithoutOrderItemsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   reviews?: Prisma.ReviewUncheckedUpdateManyWithoutMealNestedInput
+}
+
+export type MealCreateWithoutCategoryInput = {
+  id?: string
+  title: string
+  description?: string | null
+  image?: string | null
+  price: runtime.Decimal | runtime.DecimalJsLike | number | string
+  stock: number
+  isAvailable?: boolean
+  preparationTime: number
+  rating?: number | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  provider: Prisma.ProviderProfileCreateNestedOneWithoutMealsInput
+  reviews?: Prisma.ReviewCreateNestedManyWithoutMealInput
+  orderItems?: Prisma.OrderItemCreateNestedManyWithoutMealInput
+}
+
+export type MealUncheckedCreateWithoutCategoryInput = {
+  id?: string
+  providerId: string
+  title: string
+  description?: string | null
+  image?: string | null
+  price: runtime.Decimal | runtime.DecimalJsLike | number | string
+  stock: number
+  isAvailable?: boolean
+  preparationTime: number
+  rating?: number | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutMealInput
+  orderItems?: Prisma.OrderItemUncheckedCreateNestedManyWithoutMealInput
+}
+
+export type MealCreateOrConnectWithoutCategoryInput = {
+  where: Prisma.MealWhereUniqueInput
+  create: Prisma.XOR<Prisma.MealCreateWithoutCategoryInput, Prisma.MealUncheckedCreateWithoutCategoryInput>
+}
+
+export type MealCreateManyCategoryInputEnvelope = {
+  data: Prisma.MealCreateManyCategoryInput | Prisma.MealCreateManyCategoryInput[]
+  skipDuplicates?: boolean
+}
+
+export type MealUpsertWithWhereUniqueWithoutCategoryInput = {
+  where: Prisma.MealWhereUniqueInput
+  update: Prisma.XOR<Prisma.MealUpdateWithoutCategoryInput, Prisma.MealUncheckedUpdateWithoutCategoryInput>
+  create: Prisma.XOR<Prisma.MealCreateWithoutCategoryInput, Prisma.MealUncheckedCreateWithoutCategoryInput>
+}
+
+export type MealUpdateWithWhereUniqueWithoutCategoryInput = {
+  where: Prisma.MealWhereUniqueInput
+  data: Prisma.XOR<Prisma.MealUpdateWithoutCategoryInput, Prisma.MealUncheckedUpdateWithoutCategoryInput>
+}
+
+export type MealUpdateManyWithWhereWithoutCategoryInput = {
+  where: Prisma.MealScalarWhereInput
+  data: Prisma.XOR<Prisma.MealUpdateManyMutationInput, Prisma.MealUncheckedUpdateManyWithoutCategoryInput>
 }
 
 export type MealCreateManyProviderInput = {

@@ -449,6 +449,14 @@ export type ReviewUncheckedUpdateManyWithoutUserNestedInput = {
   deleteMany?: Prisma.ReviewScalarWhereInput | Prisma.ReviewScalarWhereInput[]
 }
 
+export type IntFieldUpdateOperationsInput = {
+  set?: number
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
+}
+
 export type ReviewCreateNestedManyWithoutMealInput = {
   create?: Prisma.XOR<Prisma.ReviewCreateWithoutMealInput, Prisma.ReviewUncheckedCreateWithoutMealInput> | Prisma.ReviewCreateWithoutMealInput[] | Prisma.ReviewUncheckedCreateWithoutMealInput[]
   connectOrCreate?: Prisma.ReviewCreateOrConnectWithoutMealInput | Prisma.ReviewCreateOrConnectWithoutMealInput[]
