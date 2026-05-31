@@ -1,7 +1,6 @@
 import { prisma } from "../../lib/prisma";
 
 interface CreateProviderData {
-  userId: string;
   businessName: string;
   logo: string;
   address: string;
@@ -12,10 +11,10 @@ interface CreateProviderData {
 }
 
 
-const createProvider = async (data: CreateProviderData) => {
+const createProvider = async (data: CreateProviderData, userId: string) => {
   const result = await prisma.providerProfile.create({
     data: {
-      userId: data.userId,
+      userId: userId,
       businessName: data.businessName,
       logo: data.logo,
       address: data.address,
@@ -25,6 +24,12 @@ const createProvider = async (data: CreateProviderData) => {
       deliveryTime: data.deliveryTime
     },
   });
+
+  if (!result) {
+    throw new Error("Failed to create provider profile");
+  }
+
+
   return result;
 };
 
