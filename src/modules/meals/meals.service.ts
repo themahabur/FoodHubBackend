@@ -11,6 +11,7 @@ const getMeals = async () => {
 };
 
 const createMeal = async (mealData: any) => {
+  
   const meal = await prisma.meal.create({
     data: mealData,
   });

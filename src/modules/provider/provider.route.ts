@@ -3,10 +3,10 @@ import { providerController } from "./provider.controller";
 import authorize from "../../middleware/authorize";
 
 
-const providerRoute = Router();
+const providerRoutes= Router();
 
-providerRoute.get("/", authorize("ADMIN", "PROVIDER"), providerController.getAllProviders);
-providerRoute.post("/", authorize("ADMIN" , "PROVIDER"), providerController.createProvider);
+providerRoutes.get("/", authorize("ADMIN", "PROVIDER"), providerController.getAllProviders);
+providerRoutes.post("/", authorize("ADMIN" , "PROVIDER"), providerController.createProvider);
 
 
-export default providerRoute;
+export default providerRoutes;
