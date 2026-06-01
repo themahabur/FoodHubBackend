@@ -24,7 +24,17 @@ const getMeals = async (req: Request, res: Response) => {
 const createMeal = async (req: Request, res: Response) => {
   try {
     const mealData = req.body;
-    const meal = await mealsService.createMeal(mealData);
+    const userId = req.user?.id;
+
+    if (!userId) {
+      return res.status(401).send({
+        success: false,
+        message: "Unauthorized.",
+        data: null,
+        error: null,
+      });
+    }
+    const meal = await mealsService.createMeal(mealData,userId);
 
     res.send({
       success: true,

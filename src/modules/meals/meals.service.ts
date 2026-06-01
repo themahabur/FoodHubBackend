@@ -1,4 +1,7 @@
 import { prisma } from "../../lib/prisma";
+import { MealData } from "../../types/meal.type";
+
+
 
 const getMeals = async () => {
   const meals = await prisma.meal.findMany();
@@ -10,10 +13,22 @@ const getMeals = async () => {
   return meals;
 };
 
-const createMeal = async (mealData: any) => {
-  
+const createMeal = async (mealData: MealData, userId: string) => {
+  const provider = await prisma.providerProfile.findUnique({
+    where: {
+      userId,
+    },
+  });
+
+  if (!provider) {
+    throw new Error("Provider profile not found");
+  }
+
   const meal = await prisma.meal.create({
-    data: mealData,
+    data: {
+      providerId: provider.id,
+      ...mealData,
+    },
   });
 
   if (!meal) {
