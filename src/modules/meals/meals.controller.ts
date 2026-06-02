@@ -3,6 +3,8 @@ import { mealsService } from "./meals.service";
 
 const getMeals = async (req: Request, res: Response) => {
   try {
+    const query = req.query
+    console.log("Query parameters:", query);
     const meals = await mealsService.getMeals();
 
     res.send({
@@ -15,6 +17,27 @@ const getMeals = async (req: Request, res: Response) => {
     res.status(500).send({
       success: false,
       message: "An error occurred while fetching meals.",
+      data: null,
+      error: error.message,
+    });
+  }
+};
+
+const getMealById = async (req: Request, res: Response) => {
+  try {
+    const mealId = req.params.id;
+    const meal = await mealsService.getMealById(mealId as string);
+
+    res.send({
+      success: true,
+      message: "Meal fetched successfully.",
+      data: meal,
+      error: null,
+    });
+  } catch (error: any) {
+    res.status(500).send({
+      success: false,
+      message: "An error occurred while fetching meal.",
       data: null,
       error: error.message,
     });
@@ -54,5 +77,6 @@ const createMeal = async (req: Request, res: Response) => {
 
 export const mealsController = {
   getMeals,
+  getMealById,
   createMeal,
 };

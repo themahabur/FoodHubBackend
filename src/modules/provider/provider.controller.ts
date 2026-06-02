@@ -51,7 +51,28 @@ const getAllProviders = async (req: Request, res: Response) => {
   }
 };
 
+const getProviderById = async (req: Request, res: Response) => {
+  try {
+    const providerId = req.params.id as string;
+    const provider = await providerService.getProviderById(providerId);
+    res.send({
+      success: true,
+      message: "Provider retrieved successfully.",
+      data: provider,
+      error: null,
+    });
+  } catch (error: any) {
+    res.status(500).send({
+      success: false,
+      message: "An error occurred while retrieving provider.",
+      data: null,
+      error: error.message,
+    });
+  }
+};
+
 export const providerController = {
   createProvider,
   getAllProviders,
+  getProviderById
 };

@@ -1,16 +1,28 @@
 import { prisma } from "../../lib/prisma";
 import { MealData } from "../../types/meal.type";
 
-
-
 const getMeals = async () => {
   const meals = await prisma.meal.findMany();
 
-  if (!meals) {
-    throw new Error("No meals found");
-  }
+if (meals.length === 0) {
+  throw new Error("No meals found");
+}
 
   return meals;
+};
+
+const getMealById = async (mealId: string) => {
+  const meal = await prisma.meal.findUnique({
+    where: {
+      id: mealId,
+    },
+  });
+
+  if (!meal) {
+    throw new Error("Meal not found");
+  }
+
+  return meal;
 };
 
 const createMeal = async (mealData: MealData, userId: string) => {
@@ -40,5 +52,6 @@ const createMeal = async (mealData: MealData, userId: string) => {
 
 export const mealsService = {
   getMeals,
+  getMealById,
   createMeal,
 };

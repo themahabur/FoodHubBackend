@@ -318,7 +318,7 @@ export type OrderScalarWhereWithAggregatesInput = {
 export type OrderCreateInput = {
   id?: string
   totalPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
-  status: $Enums.OrderStatus
+  status?: $Enums.OrderStatus
   deliveryAddress: string
   contactPhone: string
   notes?: string | null
@@ -332,7 +332,7 @@ export type OrderUncheckedCreateInput = {
   id?: string
   customerId: string
   totalPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
-  status: $Enums.OrderStatus
+  status?: $Enums.OrderStatus
   deliveryAddress: string
   contactPhone: string
   notes?: string | null
@@ -371,7 +371,7 @@ export type OrderCreateManyInput = {
   id?: string
   customerId: string
   totalPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
-  status: $Enums.OrderStatus
+  status?: $Enums.OrderStatus
   deliveryAddress: string
   contactPhone: string
   notes?: string | null
@@ -532,7 +532,7 @@ export type OrderUpdateOneRequiredWithoutOrderItemsNestedInput = {
 export type OrderCreateWithoutCustomerInput = {
   id?: string
   totalPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
-  status: $Enums.OrderStatus
+  status?: $Enums.OrderStatus
   deliveryAddress: string
   contactPhone: string
   notes?: string | null
@@ -544,7 +544,7 @@ export type OrderCreateWithoutCustomerInput = {
 export type OrderUncheckedCreateWithoutCustomerInput = {
   id?: string
   totalPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
-  status: $Enums.OrderStatus
+  status?: $Enums.OrderStatus
   deliveryAddress: string
   contactPhone: string
   notes?: string | null
@@ -597,7 +597,7 @@ export type OrderScalarWhereInput = {
 export type OrderCreateWithoutOrderItemsInput = {
   id?: string
   totalPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
-  status: $Enums.OrderStatus
+  status?: $Enums.OrderStatus
   deliveryAddress: string
   contactPhone: string
   notes?: string | null
@@ -610,7 +610,7 @@ export type OrderUncheckedCreateWithoutOrderItemsInput = {
   id?: string
   customerId: string
   totalPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
-  status: $Enums.OrderStatus
+  status?: $Enums.OrderStatus
   deliveryAddress: string
   contactPhone: string
   notes?: string | null
@@ -661,7 +661,7 @@ export type OrderUncheckedUpdateWithoutOrderItemsInput = {
 export type OrderCreateManyCustomerInput = {
   id?: string
   totalPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
-  status: $Enums.OrderStatus
+  status?: $Enums.OrderStatus
   deliveryAddress: string
   contactPhone: string
   notes?: string | null

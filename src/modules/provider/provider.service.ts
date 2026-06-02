@@ -33,11 +33,30 @@ const createProvider = async (data: CreateProviderData, userId: string) => {
   return result;
 };
 
-const getAllProviders = () => {
-  return "Get all providers";
+const getAllProviders = async () => {
+  const providers = await prisma.providerProfile.findMany();
+
+  if(providers.length === 0) {
+    throw new Error("No providers found");
+  }
+
+  return providers;
+};
+
+const getProviderById = async (id: string) => {
+  const provider = await prisma.providerProfile.findUnique({
+    where: { id },
+  });
+
+  if (!provider) {
+    throw new Error("Provider not found");
+  }
+
+  return provider;
 };
 
 export const providerService = {
   createProvider,
   getAllProviders,
+  getProviderById
 };
