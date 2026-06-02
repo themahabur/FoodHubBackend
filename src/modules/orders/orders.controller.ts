@@ -3,7 +3,17 @@ import { ordersService } from "./orders.service";
 
 const createOrder = async (req: Request, res: Response) => {
   try {
-    const order= await ordersService.createOrder(req.body);
+    const orderData = req.body;
+    const userId = req.user?.id;
+    if (!userId) {
+      return res.status(400).send({
+        success: false,
+        message: "User not authenticated.",
+        data: null,
+        error: "User not authenticated.",
+      });
+    }
+    const order = await ordersService.createOrder(orderData, userId);
     res.send({
       success: true,
       message: "Order created successfully.",
