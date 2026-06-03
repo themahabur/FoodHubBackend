@@ -12,8 +12,23 @@ interface CreateOrderPayload {
   }[];
 }
 
-const getOrders = async () => {
-  return "This is the orders service.";
+const getOrders = async (userId: string) => {
+  const orders = await prisma.order.findMany({
+    where: {
+      customerId: userId,
+    },
+    include: {
+      orderItems: true,
+    },
+  });
+
+
+  if (orders.length === 0) {
+    throw new Error("No orders found for this user");
+  }
+
+
+  return orders;
 };
 
 const createOrder = async (orderData: CreateOrderPayload, userId: string) => {
@@ -73,7 +88,25 @@ const createOrder = async (orderData: CreateOrderPayload, userId: string) => {
   return order;
 };
 
+const getOrderById = async (orderId: string) => {
+  const order = await prisma.order.findUnique({
+    where: {
+      id: orderId,
+    },
+    include: {
+      orderItems: true,
+    },
+  });
+
+  if (!order) {
+    throw new Error("Order not found");
+  }
+
+  return order;
+};
+
 export const ordersService = {
   getOrders,
   createOrder,
+  getOrderById,
 };

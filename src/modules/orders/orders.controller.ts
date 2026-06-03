@@ -32,26 +32,43 @@ const createOrder = async (req: Request, res: Response) => {
 
 const getOrders = async (req: Request, res: Response) => {
   try {
-    const orders = await ordersService.getOrders();
+    const orders = await ordersService.getOrders(req.user?.id as string);
 
     res.send({
       success: true,
       message: "Orders retrieved successfully.",
       data: orders,
-      error: null,
     });
   } catch (error: any) {
     res.status(500).send({
       success: false,
-      message: "An error occurred while retrieving orders.",
+      message: error.message,
       data: null,
-      error: error.message,
+    });
+  }
+};
+
+const getOrderById = async (req: Request, res: Response) => {
+  try {
+    const orderId = req.params.id;
+    const order = await ordersService.getOrderById(orderId as string);
+
+    res.send({
+      success: true,
+      message: "Order retrieved successfully.",
+      data: order,
+    });
+  } catch (error: any) {
+    res.status(500).send({
+      success: false,
+      message: error.message,
+      data: null,
     });
   }
 };
 
 export const ordersController = {
   getOrders,
-
+  getOrderById,
   createOrder,
 };

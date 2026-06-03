@@ -6,6 +6,7 @@ import authorize from "../../middleware/authorize";
 const ordersRoutes=Router();
 
 ordersRoutes.post("/",authorize("ADMIN" , "CUSTOMER") , ordersController.createOrder);
-ordersRoutes.get("/", ordersController.getOrders);
+ordersRoutes.get("/",authorize("ADMIN" , "CUSTOMER") , ordersController.getOrders);
+ordersRoutes.get("/:id",authorize("ADMIN" , "CUSTOMER") , ordersController.getOrderById);
 
 export default ordersRoutes;
