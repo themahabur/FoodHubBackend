@@ -3,7 +3,7 @@ import { mealsService } from "./meals.service";
 
 const getMeals = async (req: Request, res: Response) => {
   try {
-    const query = req.query
+    const query = req.query;
     console.log("Query parameters:", query);
     const meals = await mealsService.getMeals();
 
@@ -16,9 +16,9 @@ const getMeals = async (req: Request, res: Response) => {
   } catch (error: any) {
     res.status(500).send({
       success: false,
-      message: "An error occurred while fetching meals.",
+      message: error.message,
       data: null,
-      error: error.message,
+      error: "An error occurred while fetching meals.",
     });
   }
 };
@@ -37,9 +37,9 @@ const getMealById = async (req: Request, res: Response) => {
   } catch (error: any) {
     res.status(500).send({
       success: false,
-      message: "An error occurred while fetching meal.",
+      message: error.message,
       data: null,
-      error: error.message,
+      error: "An error occurred while fetching meal.",
     });
   }
 };
@@ -57,7 +57,7 @@ const createMeal = async (req: Request, res: Response) => {
         error: null,
       });
     }
-    const meal = await mealsService.createMeal(mealData,userId);
+    const meal = await mealsService.createMeal(mealData, userId);
 
     res.send({
       success: true,
@@ -68,9 +68,52 @@ const createMeal = async (req: Request, res: Response) => {
   } catch (error: any) {
     res.status(500).send({
       success: false,
-      message: "An error occurred while creating meal.",
+      message: error.message,
       data: null,
-      error: error.message,
+      error: "An error occurred while creating meal.",
+    });
+  }
+};
+
+const updateMeal = async (req: Request, res: Response) => {
+  try {
+    const mealId = req.params.id;
+    const mealData = req.body;
+    const meal = await mealsService.updateMeal(mealId as string, mealData);
+
+    res.send({
+      success: true,
+      message: "Meal updated successfully.",
+      data: meal,
+      error: null,
+    });
+  } catch (error: any) {
+    res.status(500).send({
+      success: false,
+      message: error.message,
+      data: null,
+      error: "An error occurred while updating meal.",
+    });
+  }
+};
+
+const deleteMeal = async (req: Request, res: Response) => {
+  try {
+    const mealId = req.params.id;
+    const meal = await mealsService.deleteMeal(mealId as string);
+
+    res.send({
+      success: true,
+      message: "Meal deleted successfully.",
+      data: meal,
+      error: null,
+    });
+  } catch (error: any) {
+    res.status(500).send({
+      success: false,
+      message: error.message,
+      data: null,
+      error: "An error occurred while deleting meal.",
     });
   }
 };
@@ -79,4 +122,6 @@ export const mealsController = {
   getMeals,
   getMealById,
   createMeal,
+  updateMeal,
+  deleteMeal,
 };

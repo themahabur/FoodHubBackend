@@ -6,6 +6,8 @@ const mealsRoutes = Router();
 
 mealsRoutes.get("/", mealsController.getMeals);
 mealsRoutes.get("/:id", mealsController.getMealById);
+mealsRoutes.put("/:id",authorize("ADMIN", "PROVIDER") , mealsController.updateMeal);
+mealsRoutes.delete("/:id",authorize("ADMIN", "PROVIDER") , mealsController.deleteMeal);
 
 
 mealsRoutes.post(

@@ -4,9 +4,9 @@ import { MealData } from "../../types/meal.type";
 const getMeals = async () => {
   const meals = await prisma.meal.findMany();
 
-if (meals.length === 0) {
-  throw new Error("No meals found");
-}
+  if (meals.length === 0) {
+    throw new Error("No meals found");
+  }
 
   return meals;
 };
@@ -50,8 +50,39 @@ const createMeal = async (mealData: MealData, userId: string) => {
   return meal;
 };
 
+const updateMeal = async (mealId: string, mealData: MealData) => {
+  const meal = await prisma.meal.update({
+    where: {
+      id: mealId,
+    },
+    data: mealData,
+  });
+
+  if (!meal) {
+    throw new Error("Failed to update meal");
+  }
+
+  return meal;
+};
+
+const deleteMeal = async (mealId: string) => {
+  const meal = await prisma.meal.delete({
+    where: {
+      id: mealId,
+    },
+  });
+
+  if (!meal) {
+    throw new Error("Failed to delete meal");
+  }
+
+  return meal;
+};
+
 export const mealsService = {
   getMeals,
   getMealById,
   createMeal,
+  updateMeal,
+  deleteMeal,
 };
