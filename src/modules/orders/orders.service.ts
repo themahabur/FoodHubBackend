@@ -1,16 +1,6 @@
+import { OrderStatus } from "../../generated/prisma/enums";
 import { prisma } from "../../lib/prisma";
-
-interface CreateOrderPayload {
-  deliveryAddress: string;
-  contactPhone: string;
-  notes?: string;
-
-  items: {
-    mealId: string;
-    quantity: number;
-    unitPrice: number;
-  }[];
-}
+import { CreateOrderPayload } from "../../types/order.type";
 
 const getOrders = async (userId: string) => {
   const orders = await prisma.order.findMany({
@@ -22,11 +12,9 @@ const getOrders = async (userId: string) => {
     },
   });
 
-
   if (orders.length === 0) {
     throw new Error("No orders found for this user");
   }
-
 
   return orders;
 };
@@ -105,8 +93,26 @@ const getOrderById = async (orderId: string) => {
   return order;
 };
 
+const updateOrderStatus = async (orderId: string, status: OrderStatus) => {
+  const updatedOrder = await prisma.order.update({
+    where: {
+      id: orderId,
+    },
+    data: {
+      status: status,
+    },
+  });
+
+  if (!updatedOrder) {
+    throw new Error("Order not found");
+  }
+
+  return updatedOrder;
+};
+
 export const ordersService = {
   getOrders,
   createOrder,
   getOrderById,
+  updateOrderStatus,
 };
