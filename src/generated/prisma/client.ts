@@ -67,15 +67,15 @@ export type Verification = Prisma.VerificationModel
  */
 export type ProviderProfile = Prisma.ProviderProfileModel
 /**
- * Model Order
- * 
- */
-export type Order = Prisma.OrderModel
-/**
  * Model Review
  * 
  */
 export type Review = Prisma.ReviewModel
+/**
+ * Model Order
+ * 
+ */
+export type Order = Prisma.OrderModel
 /**
  * Model OrderItem
  * 

@@ -1,3 +1,4 @@
+
 generator client {
   provider = "prisma-client"
   output   = "../src/generated/prisma"
@@ -27,6 +28,10 @@ model User {
   address String?
   status  String? @default("ACTIVE")
 
+  banned     Boolean?  @default(false)
+  banReason  String?
+  banExpires DateTime?
+
   @@map("user")
 }
 
@@ -41,6 +46,8 @@ model Session {
 
   userId String
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  impersonatedBy String?
 
   @@index([userId])
   @@map("session")

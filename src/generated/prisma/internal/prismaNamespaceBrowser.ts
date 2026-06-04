@@ -56,8 +56,8 @@ export const ModelName = {
   Account: 'Account',
   Verification: 'Verification',
   ProviderProfile: 'ProviderProfile',
-  Order: 'Order',
   Review: 'Review',
+  Order: 'Order',
   OrderItem: 'OrderItem',
   Meal: 'Meal',
   Category: 'Category'
@@ -90,7 +90,10 @@ export const UserScalarFieldEnum = {
   role: 'role',
   phone: 'phone',
   address: 'address',
-  status: 'status'
+  status: 'status',
+  banned: 'banned',
+  banReason: 'banReason',
+  banExpires: 'banExpires'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -104,7 +107,8 @@ export const SessionScalarFieldEnum = {
   updatedAt: 'updatedAt',
   ipAddress: 'ipAddress',
   userAgent: 'userAgent',
-  userId: 'userId'
+  userId: 'userId',
+  impersonatedBy: 'impersonatedBy'
 } as const
 
 export type SessionScalarFieldEnum = (typeof SessionScalarFieldEnum)[keyof typeof SessionScalarFieldEnum]
@@ -159,6 +163,19 @@ export const ProviderProfileScalarFieldEnum = {
 export type ProviderProfileScalarFieldEnum = (typeof ProviderProfileScalarFieldEnum)[keyof typeof ProviderProfileScalarFieldEnum]
 
 
+export const ReviewScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  mealId: 'mealId',
+  rating: 'rating',
+  comment: 'comment',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ReviewScalarFieldEnum = (typeof ReviewScalarFieldEnum)[keyof typeof ReviewScalarFieldEnum]
+
+
 export const OrderScalarFieldEnum = {
   id: 'id',
   customerId: 'customerId',
@@ -172,19 +189,6 @@ export const OrderScalarFieldEnum = {
 } as const
 
 export type OrderScalarFieldEnum = (typeof OrderScalarFieldEnum)[keyof typeof OrderScalarFieldEnum]
-
-
-export const ReviewScalarFieldEnum = {
-  id: 'id',
-  userId: 'userId',
-  mealId: 'mealId',
-  rating: 'rating',
-  comment: 'comment',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-} as const
-
-export type ReviewScalarFieldEnum = (typeof ReviewScalarFieldEnum)[keyof typeof ReviewScalarFieldEnum]
 
 
 export const OrderItemScalarFieldEnum = {

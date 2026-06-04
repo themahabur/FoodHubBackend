@@ -1,5 +1,6 @@
 import app from "./app";
 import { prisma } from "./lib/prisma";
+import { createAdminIfNotExists } from "./lib/seed";
 
 const PORT = process.env.PORT || 5000;
 
@@ -7,6 +8,8 @@ const server = async () => {
   try {
     await prisma.$connect();
     console.log("Connected to the database successfully.");
+    
+    await createAdminIfNotExists();
     app.listen(PORT, () => {
       console.log(`Server is running on port: http://localhost:${PORT}`);
     });
