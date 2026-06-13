@@ -2,11 +2,17 @@ import { prisma } from "../../lib/prisma";
 import { MealData } from "../../types/meal.type";
 
 const getMeals = async () => {
-  const meals = await prisma.meal.findMany();
+  const meals = await prisma.meal.findMany({
+    include: {
+      provider: true,
+    },
+  });
 
   if (meals.length === 0) {
     throw new Error("No meals found");
   }
+
+
 
   return meals;
 };

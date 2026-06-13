@@ -646,14 +646,6 @@ export type MealUpdateOneRequiredWithoutOrderItemsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.MealUpdateToOneWithWhereWithoutOrderItemsInput, Prisma.MealUpdateWithoutOrderItemsInput>, Prisma.MealUncheckedUpdateWithoutOrderItemsInput>
 }
 
-export type NullableFloatFieldUpdateOperationsInput = {
-  set?: number | null
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
-}
-
 export type MealCreateNestedManyWithoutCategoryInput = {
   create?: Prisma.XOR<Prisma.MealCreateWithoutCategoryInput, Prisma.MealUncheckedCreateWithoutCategoryInput> | Prisma.MealCreateWithoutCategoryInput[] | Prisma.MealUncheckedCreateWithoutCategoryInput[]
   connectOrCreate?: Prisma.MealCreateOrConnectWithoutCategoryInput | Prisma.MealCreateOrConnectWithoutCategoryInput[]

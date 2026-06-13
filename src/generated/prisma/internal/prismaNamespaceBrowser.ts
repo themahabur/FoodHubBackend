@@ -155,6 +155,10 @@ export const ProviderProfileScalarFieldEnum = {
   cuisineType: 'cuisineType',
   deliveryTime: 'deliveryTime',
   address: 'address',
+  minOrder: 'minOrder',
+  rating: 'rating',
+  isOpen: 'isOpen',
+  tags: 'tags',
   isVerified: 'isVerified',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'

@@ -6,12 +6,24 @@ interface CreateProviderData {
   address: string;
   banner: string;
   description: string;
-  cuisineType: string;
+  cuisineType: string[];
   deliveryTime: string;
 }
 
 
 const createProvider = async (data: CreateProviderData, userId: string) => {
+
+
+  const isProvider = await prisma.providerProfile.findUnique({
+    where: {
+      userId: userId,
+    },
+  });
+
+  if (isProvider) {
+    throw new Error("User is already a Provider profile cannot create another profile");
+  }
+
   const result = await prisma.providerProfile.create({
     data: {
       userId: userId,
@@ -25,9 +37,12 @@ const createProvider = async (data: CreateProviderData, userId: string) => {
     },
   });
 
+
   if (!result) {
     throw new Error("Failed to create provider profile");
   }
+
+
 
 
   return result;

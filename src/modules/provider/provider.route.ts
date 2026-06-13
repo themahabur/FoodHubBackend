@@ -7,7 +7,7 @@ const providerRoutes= Router();
 
 providerRoutes.get("/",  providerController.getAllProviders);
 providerRoutes.get("/:id",  providerController.getProviderById);
-providerRoutes.post("/", authorize("ADMIN" , "PROVIDER"), providerController.createProvider);
+providerRoutes.post("/", authorize( "PROVIDER"), providerController.createProvider);
 
 
 export default providerRoutes;

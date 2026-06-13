@@ -95,9 +95,16 @@ model ProviderProfile {
   logo         String?
   banner       String?
   description  String?
-  cuisineType  String
+  cuisineType  String[]
   deliveryTime String
   address      String
+
+
+  minOrder      Int?        
+  rating        Float?      
+  isOpen        Boolean @default(true) 
+  tags          String[]    
+
   isVerified   Boolean @default(false)
 
   createdAt DateTime @default(now())

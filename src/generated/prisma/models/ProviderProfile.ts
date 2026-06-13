@@ -20,8 +20,20 @@ export type ProviderProfileModel = runtime.Types.Result.DefaultSelection<Prisma.
 
 export type AggregateProviderProfile = {
   _count: ProviderProfileCountAggregateOutputType | null
+  _avg: ProviderProfileAvgAggregateOutputType | null
+  _sum: ProviderProfileSumAggregateOutputType | null
   _min: ProviderProfileMinAggregateOutputType | null
   _max: ProviderProfileMaxAggregateOutputType | null
+}
+
+export type ProviderProfileAvgAggregateOutputType = {
+  minOrder: number | null
+  rating: number | null
+}
+
+export type ProviderProfileSumAggregateOutputType = {
+  minOrder: number | null
+  rating: number | null
 }
 
 export type ProviderProfileMinAggregateOutputType = {
@@ -31,9 +43,11 @@ export type ProviderProfileMinAggregateOutputType = {
   logo: string | null
   banner: string | null
   description: string | null
-  cuisineType: string | null
   deliveryTime: string | null
   address: string | null
+  minOrder: number | null
+  rating: number | null
+  isOpen: boolean | null
   isVerified: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -46,9 +60,11 @@ export type ProviderProfileMaxAggregateOutputType = {
   logo: string | null
   banner: string | null
   description: string | null
-  cuisineType: string | null
   deliveryTime: string | null
   address: string | null
+  minOrder: number | null
+  rating: number | null
+  isOpen: boolean | null
   isVerified: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -64,12 +80,26 @@ export type ProviderProfileCountAggregateOutputType = {
   cuisineType: number
   deliveryTime: number
   address: number
+  minOrder: number
+  rating: number
+  isOpen: number
+  tags: number
   isVerified: number
   createdAt: number
   updatedAt: number
   _all: number
 }
 
+
+export type ProviderProfileAvgAggregateInputType = {
+  minOrder?: true
+  rating?: true
+}
+
+export type ProviderProfileSumAggregateInputType = {
+  minOrder?: true
+  rating?: true
+}
 
 export type ProviderProfileMinAggregateInputType = {
   id?: true
@@ -78,9 +108,11 @@ export type ProviderProfileMinAggregateInputType = {
   logo?: true
   banner?: true
   description?: true
-  cuisineType?: true
   deliveryTime?: true
   address?: true
+  minOrder?: true
+  rating?: true
+  isOpen?: true
   isVerified?: true
   createdAt?: true
   updatedAt?: true
@@ -93,9 +125,11 @@ export type ProviderProfileMaxAggregateInputType = {
   logo?: true
   banner?: true
   description?: true
-  cuisineType?: true
   deliveryTime?: true
   address?: true
+  minOrder?: true
+  rating?: true
+  isOpen?: true
   isVerified?: true
   createdAt?: true
   updatedAt?: true
@@ -111,6 +145,10 @@ export type ProviderProfileCountAggregateInputType = {
   cuisineType?: true
   deliveryTime?: true
   address?: true
+  minOrder?: true
+  rating?: true
+  isOpen?: true
+  tags?: true
   isVerified?: true
   createdAt?: true
   updatedAt?: true
@@ -155,6 +193,18 @@ export type ProviderProfileAggregateArgs<ExtArgs extends runtime.Types.Extension
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
+   * Select which fields to average
+  **/
+  _avg?: ProviderProfileAvgAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
+   * Select which fields to sum
+  **/
+  _sum?: ProviderProfileSumAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
    * Select which fields to find the minimum value
   **/
   _min?: ProviderProfileMinAggregateInputType
@@ -185,6 +235,8 @@ export type ProviderProfileGroupByArgs<ExtArgs extends runtime.Types.Extensions.
   take?: number
   skip?: number
   _count?: ProviderProfileCountAggregateInputType | true
+  _avg?: ProviderProfileAvgAggregateInputType
+  _sum?: ProviderProfileSumAggregateInputType
   _min?: ProviderProfileMinAggregateInputType
   _max?: ProviderProfileMaxAggregateInputType
 }
@@ -196,13 +248,19 @@ export type ProviderProfileGroupByOutputType = {
   logo: string | null
   banner: string | null
   description: string | null
-  cuisineType: string
+  cuisineType: string[]
   deliveryTime: string
   address: string
+  minOrder: number | null
+  rating: number | null
+  isOpen: boolean
+  tags: string[]
   isVerified: boolean
   createdAt: Date
   updatedAt: Date
   _count: ProviderProfileCountAggregateOutputType | null
+  _avg: ProviderProfileAvgAggregateOutputType | null
+  _sum: ProviderProfileSumAggregateOutputType | null
   _min: ProviderProfileMinAggregateOutputType | null
   _max: ProviderProfileMaxAggregateOutputType | null
 }
@@ -232,9 +290,13 @@ export type ProviderProfileWhereInput = {
   logo?: Prisma.StringNullableFilter<"ProviderProfile"> | string | null
   banner?: Prisma.StringNullableFilter<"ProviderProfile"> | string | null
   description?: Prisma.StringNullableFilter<"ProviderProfile"> | string | null
-  cuisineType?: Prisma.StringFilter<"ProviderProfile"> | string
+  cuisineType?: Prisma.StringNullableListFilter<"ProviderProfile">
   deliveryTime?: Prisma.StringFilter<"ProviderProfile"> | string
   address?: Prisma.StringFilter<"ProviderProfile"> | string
+  minOrder?: Prisma.IntNullableFilter<"ProviderProfile"> | number | null
+  rating?: Prisma.FloatNullableFilter<"ProviderProfile"> | number | null
+  isOpen?: Prisma.BoolFilter<"ProviderProfile"> | boolean
+  tags?: Prisma.StringNullableListFilter<"ProviderProfile">
   isVerified?: Prisma.BoolFilter<"ProviderProfile"> | boolean
   createdAt?: Prisma.DateTimeFilter<"ProviderProfile"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ProviderProfile"> | Date | string
@@ -252,6 +314,10 @@ export type ProviderProfileOrderByWithRelationInput = {
   cuisineType?: Prisma.SortOrder
   deliveryTime?: Prisma.SortOrder
   address?: Prisma.SortOrder
+  minOrder?: Prisma.SortOrderInput | Prisma.SortOrder
+  rating?: Prisma.SortOrderInput | Prisma.SortOrder
+  isOpen?: Prisma.SortOrder
+  tags?: Prisma.SortOrder
   isVerified?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -269,9 +335,13 @@ export type ProviderProfileWhereUniqueInput = Prisma.AtLeast<{
   logo?: Prisma.StringNullableFilter<"ProviderProfile"> | string | null
   banner?: Prisma.StringNullableFilter<"ProviderProfile"> | string | null
   description?: Prisma.StringNullableFilter<"ProviderProfile"> | string | null
-  cuisineType?: Prisma.StringFilter<"ProviderProfile"> | string
+  cuisineType?: Prisma.StringNullableListFilter<"ProviderProfile">
   deliveryTime?: Prisma.StringFilter<"ProviderProfile"> | string
   address?: Prisma.StringFilter<"ProviderProfile"> | string
+  minOrder?: Prisma.IntNullableFilter<"ProviderProfile"> | number | null
+  rating?: Prisma.FloatNullableFilter<"ProviderProfile"> | number | null
+  isOpen?: Prisma.BoolFilter<"ProviderProfile"> | boolean
+  tags?: Prisma.StringNullableListFilter<"ProviderProfile">
   isVerified?: Prisma.BoolFilter<"ProviderProfile"> | boolean
   createdAt?: Prisma.DateTimeFilter<"ProviderProfile"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ProviderProfile"> | Date | string
@@ -289,12 +359,18 @@ export type ProviderProfileOrderByWithAggregationInput = {
   cuisineType?: Prisma.SortOrder
   deliveryTime?: Prisma.SortOrder
   address?: Prisma.SortOrder
+  minOrder?: Prisma.SortOrderInput | Prisma.SortOrder
+  rating?: Prisma.SortOrderInput | Prisma.SortOrder
+  isOpen?: Prisma.SortOrder
+  tags?: Prisma.SortOrder
   isVerified?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.ProviderProfileCountOrderByAggregateInput
+  _avg?: Prisma.ProviderProfileAvgOrderByAggregateInput
   _max?: Prisma.ProviderProfileMaxOrderByAggregateInput
   _min?: Prisma.ProviderProfileMinOrderByAggregateInput
+  _sum?: Prisma.ProviderProfileSumOrderByAggregateInput
 }
 
 export type ProviderProfileScalarWhereWithAggregatesInput = {
@@ -307,9 +383,13 @@ export type ProviderProfileScalarWhereWithAggregatesInput = {
   logo?: Prisma.StringNullableWithAggregatesFilter<"ProviderProfile"> | string | null
   banner?: Prisma.StringNullableWithAggregatesFilter<"ProviderProfile"> | string | null
   description?: Prisma.StringNullableWithAggregatesFilter<"ProviderProfile"> | string | null
-  cuisineType?: Prisma.StringWithAggregatesFilter<"ProviderProfile"> | string
+  cuisineType?: Prisma.StringNullableListFilter<"ProviderProfile">
   deliveryTime?: Prisma.StringWithAggregatesFilter<"ProviderProfile"> | string
   address?: Prisma.StringWithAggregatesFilter<"ProviderProfile"> | string
+  minOrder?: Prisma.IntNullableWithAggregatesFilter<"ProviderProfile"> | number | null
+  rating?: Prisma.FloatNullableWithAggregatesFilter<"ProviderProfile"> | number | null
+  isOpen?: Prisma.BoolWithAggregatesFilter<"ProviderProfile"> | boolean
+  tags?: Prisma.StringNullableListFilter<"ProviderProfile">
   isVerified?: Prisma.BoolWithAggregatesFilter<"ProviderProfile"> | boolean
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"ProviderProfile"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"ProviderProfile"> | Date | string
@@ -321,9 +401,13 @@ export type ProviderProfileCreateInput = {
   logo?: string | null
   banner?: string | null
   description?: string | null
-  cuisineType: string
+  cuisineType?: Prisma.ProviderProfileCreatecuisineTypeInput | string[]
   deliveryTime: string
   address: string
+  minOrder?: number | null
+  rating?: number | null
+  isOpen?: boolean
+  tags?: Prisma.ProviderProfileCreatetagsInput | string[]
   isVerified?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -338,9 +422,13 @@ export type ProviderProfileUncheckedCreateInput = {
   logo?: string | null
   banner?: string | null
   description?: string | null
-  cuisineType: string
+  cuisineType?: Prisma.ProviderProfileCreatecuisineTypeInput | string[]
   deliveryTime: string
   address: string
+  minOrder?: number | null
+  rating?: number | null
+  isOpen?: boolean
+  tags?: Prisma.ProviderProfileCreatetagsInput | string[]
   isVerified?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -353,9 +441,13 @@ export type ProviderProfileUpdateInput = {
   logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   banner?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  cuisineType?: Prisma.StringFieldUpdateOperationsInput | string
+  cuisineType?: Prisma.ProviderProfileUpdatecuisineTypeInput | string[]
   deliveryTime?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
+  minOrder?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  rating?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  isOpen?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tags?: Prisma.ProviderProfileUpdatetagsInput | string[]
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -370,9 +462,13 @@ export type ProviderProfileUncheckedUpdateInput = {
   logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   banner?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  cuisineType?: Prisma.StringFieldUpdateOperationsInput | string
+  cuisineType?: Prisma.ProviderProfileUpdatecuisineTypeInput | string[]
   deliveryTime?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
+  minOrder?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  rating?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  isOpen?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tags?: Prisma.ProviderProfileUpdatetagsInput | string[]
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -386,9 +482,13 @@ export type ProviderProfileCreateManyInput = {
   logo?: string | null
   banner?: string | null
   description?: string | null
-  cuisineType: string
+  cuisineType?: Prisma.ProviderProfileCreatecuisineTypeInput | string[]
   deliveryTime: string
   address: string
+  minOrder?: number | null
+  rating?: number | null
+  isOpen?: boolean
+  tags?: Prisma.ProviderProfileCreatetagsInput | string[]
   isVerified?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -400,9 +500,13 @@ export type ProviderProfileUpdateManyMutationInput = {
   logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   banner?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  cuisineType?: Prisma.StringFieldUpdateOperationsInput | string
+  cuisineType?: Prisma.ProviderProfileUpdatecuisineTypeInput | string[]
   deliveryTime?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
+  minOrder?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  rating?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  isOpen?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tags?: Prisma.ProviderProfileUpdatetagsInput | string[]
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -415,9 +519,13 @@ export type ProviderProfileUncheckedUpdateManyInput = {
   logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   banner?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  cuisineType?: Prisma.StringFieldUpdateOperationsInput | string
+  cuisineType?: Prisma.ProviderProfileUpdatecuisineTypeInput | string[]
   deliveryTime?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
+  minOrder?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  rating?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  isOpen?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tags?: Prisma.ProviderProfileUpdatetagsInput | string[]
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -426,6 +534,14 @@ export type ProviderProfileUncheckedUpdateManyInput = {
 export type ProviderProfileNullableScalarRelationFilter = {
   is?: Prisma.ProviderProfileWhereInput | null
   isNot?: Prisma.ProviderProfileWhereInput | null
+}
+
+export type StringNullableListFilter<$PrismaModel = never> = {
+  equals?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel> | null
+  has?: string | Prisma.StringFieldRefInput<$PrismaModel> | null
+  hasEvery?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
+  hasSome?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
+  isEmpty?: boolean
 }
 
 export type ProviderProfileCountOrderByAggregateInput = {
@@ -438,9 +554,18 @@ export type ProviderProfileCountOrderByAggregateInput = {
   cuisineType?: Prisma.SortOrder
   deliveryTime?: Prisma.SortOrder
   address?: Prisma.SortOrder
+  minOrder?: Prisma.SortOrder
+  rating?: Prisma.SortOrder
+  isOpen?: Prisma.SortOrder
+  tags?: Prisma.SortOrder
   isVerified?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+}
+
+export type ProviderProfileAvgOrderByAggregateInput = {
+  minOrder?: Prisma.SortOrder
+  rating?: Prisma.SortOrder
 }
 
 export type ProviderProfileMaxOrderByAggregateInput = {
@@ -450,9 +575,11 @@ export type ProviderProfileMaxOrderByAggregateInput = {
   logo?: Prisma.SortOrder
   banner?: Prisma.SortOrder
   description?: Prisma.SortOrder
-  cuisineType?: Prisma.SortOrder
   deliveryTime?: Prisma.SortOrder
   address?: Prisma.SortOrder
+  minOrder?: Prisma.SortOrder
+  rating?: Prisma.SortOrder
+  isOpen?: Prisma.SortOrder
   isVerified?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -465,12 +592,19 @@ export type ProviderProfileMinOrderByAggregateInput = {
   logo?: Prisma.SortOrder
   banner?: Prisma.SortOrder
   description?: Prisma.SortOrder
-  cuisineType?: Prisma.SortOrder
   deliveryTime?: Prisma.SortOrder
   address?: Prisma.SortOrder
+  minOrder?: Prisma.SortOrder
+  rating?: Prisma.SortOrder
+  isOpen?: Prisma.SortOrder
   isVerified?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+}
+
+export type ProviderProfileSumOrderByAggregateInput = {
+  minOrder?: Prisma.SortOrder
+  rating?: Prisma.SortOrder
 }
 
 export type ProviderProfileScalarRelationFilter = {
@@ -510,6 +644,40 @@ export type ProviderProfileUncheckedUpdateOneWithoutUserNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.ProviderProfileUpdateToOneWithWhereWithoutUserInput, Prisma.ProviderProfileUpdateWithoutUserInput>, Prisma.ProviderProfileUncheckedUpdateWithoutUserInput>
 }
 
+export type ProviderProfileCreatecuisineTypeInput = {
+  set: string[]
+}
+
+export type ProviderProfileCreatetagsInput = {
+  set: string[]
+}
+
+export type ProviderProfileUpdatecuisineTypeInput = {
+  set?: string[]
+  push?: string | string[]
+}
+
+export type NullableIntFieldUpdateOperationsInput = {
+  set?: number | null
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
+}
+
+export type NullableFloatFieldUpdateOperationsInput = {
+  set?: number | null
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
+}
+
+export type ProviderProfileUpdatetagsInput = {
+  set?: string[]
+  push?: string | string[]
+}
+
 export type ProviderProfileCreateNestedOneWithoutMealsInput = {
   create?: Prisma.XOR<Prisma.ProviderProfileCreateWithoutMealsInput, Prisma.ProviderProfileUncheckedCreateWithoutMealsInput>
   connectOrCreate?: Prisma.ProviderProfileCreateOrConnectWithoutMealsInput
@@ -530,9 +698,13 @@ export type ProviderProfileCreateWithoutUserInput = {
   logo?: string | null
   banner?: string | null
   description?: string | null
-  cuisineType: string
+  cuisineType?: Prisma.ProviderProfileCreatecuisineTypeInput | string[]
   deliveryTime: string
   address: string
+  minOrder?: number | null
+  rating?: number | null
+  isOpen?: boolean
+  tags?: Prisma.ProviderProfileCreatetagsInput | string[]
   isVerified?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -545,9 +717,13 @@ export type ProviderProfileUncheckedCreateWithoutUserInput = {
   logo?: string | null
   banner?: string | null
   description?: string | null
-  cuisineType: string
+  cuisineType?: Prisma.ProviderProfileCreatecuisineTypeInput | string[]
   deliveryTime: string
   address: string
+  minOrder?: number | null
+  rating?: number | null
+  isOpen?: boolean
+  tags?: Prisma.ProviderProfileCreatetagsInput | string[]
   isVerified?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -576,9 +752,13 @@ export type ProviderProfileUpdateWithoutUserInput = {
   logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   banner?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  cuisineType?: Prisma.StringFieldUpdateOperationsInput | string
+  cuisineType?: Prisma.ProviderProfileUpdatecuisineTypeInput | string[]
   deliveryTime?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
+  minOrder?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  rating?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  isOpen?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tags?: Prisma.ProviderProfileUpdatetagsInput | string[]
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -591,9 +771,13 @@ export type ProviderProfileUncheckedUpdateWithoutUserInput = {
   logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   banner?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  cuisineType?: Prisma.StringFieldUpdateOperationsInput | string
+  cuisineType?: Prisma.ProviderProfileUpdatecuisineTypeInput | string[]
   deliveryTime?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
+  minOrder?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  rating?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  isOpen?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tags?: Prisma.ProviderProfileUpdatetagsInput | string[]
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -606,9 +790,13 @@ export type ProviderProfileCreateWithoutMealsInput = {
   logo?: string | null
   banner?: string | null
   description?: string | null
-  cuisineType: string
+  cuisineType?: Prisma.ProviderProfileCreatecuisineTypeInput | string[]
   deliveryTime: string
   address: string
+  minOrder?: number | null
+  rating?: number | null
+  isOpen?: boolean
+  tags?: Prisma.ProviderProfileCreatetagsInput | string[]
   isVerified?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -622,9 +810,13 @@ export type ProviderProfileUncheckedCreateWithoutMealsInput = {
   logo?: string | null
   banner?: string | null
   description?: string | null
-  cuisineType: string
+  cuisineType?: Prisma.ProviderProfileCreatecuisineTypeInput | string[]
   deliveryTime: string
   address: string
+  minOrder?: number | null
+  rating?: number | null
+  isOpen?: boolean
+  tags?: Prisma.ProviderProfileCreatetagsInput | string[]
   isVerified?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -652,9 +844,13 @@ export type ProviderProfileUpdateWithoutMealsInput = {
   logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   banner?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  cuisineType?: Prisma.StringFieldUpdateOperationsInput | string
+  cuisineType?: Prisma.ProviderProfileUpdatecuisineTypeInput | string[]
   deliveryTime?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
+  minOrder?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  rating?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  isOpen?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tags?: Prisma.ProviderProfileUpdatetagsInput | string[]
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -668,9 +864,13 @@ export type ProviderProfileUncheckedUpdateWithoutMealsInput = {
   logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   banner?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  cuisineType?: Prisma.StringFieldUpdateOperationsInput | string
+  cuisineType?: Prisma.ProviderProfileUpdatecuisineTypeInput | string[]
   deliveryTime?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
+  minOrder?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  rating?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  isOpen?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tags?: Prisma.ProviderProfileUpdatetagsInput | string[]
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -717,6 +917,10 @@ export type ProviderProfileSelect<ExtArgs extends runtime.Types.Extensions.Inter
   cuisineType?: boolean
   deliveryTime?: boolean
   address?: boolean
+  minOrder?: boolean
+  rating?: boolean
+  isOpen?: boolean
+  tags?: boolean
   isVerified?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -735,6 +939,10 @@ export type ProviderProfileSelectCreateManyAndReturn<ExtArgs extends runtime.Typ
   cuisineType?: boolean
   deliveryTime?: boolean
   address?: boolean
+  minOrder?: boolean
+  rating?: boolean
+  isOpen?: boolean
+  tags?: boolean
   isVerified?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -751,6 +959,10 @@ export type ProviderProfileSelectUpdateManyAndReturn<ExtArgs extends runtime.Typ
   cuisineType?: boolean
   deliveryTime?: boolean
   address?: boolean
+  minOrder?: boolean
+  rating?: boolean
+  isOpen?: boolean
+  tags?: boolean
   isVerified?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -767,12 +979,16 @@ export type ProviderProfileSelectScalar = {
   cuisineType?: boolean
   deliveryTime?: boolean
   address?: boolean
+  minOrder?: boolean
+  rating?: boolean
+  isOpen?: boolean
+  tags?: boolean
   isVerified?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type ProviderProfileOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "businessName" | "logo" | "banner" | "description" | "cuisineType" | "deliveryTime" | "address" | "isVerified" | "createdAt" | "updatedAt", ExtArgs["result"]["providerProfile"]>
+export type ProviderProfileOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "businessName" | "logo" | "banner" | "description" | "cuisineType" | "deliveryTime" | "address" | "minOrder" | "rating" | "isOpen" | "tags" | "isVerified" | "createdAt" | "updatedAt", ExtArgs["result"]["providerProfile"]>
 export type ProviderProfileInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   meals?: boolean | Prisma.ProviderProfile$mealsArgs<ExtArgs>
@@ -798,9 +1014,13 @@ export type $ProviderProfilePayload<ExtArgs extends runtime.Types.Extensions.Int
     logo: string | null
     banner: string | null
     description: string | null
-    cuisineType: string
+    cuisineType: string[]
     deliveryTime: string
     address: string
+    minOrder: number | null
+    rating: number | null
+    isOpen: boolean
+    tags: string[]
     isVerified: boolean
     createdAt: Date
     updatedAt: Date
@@ -1235,9 +1455,13 @@ export interface ProviderProfileFieldRefs {
   readonly logo: Prisma.FieldRef<"ProviderProfile", 'String'>
   readonly banner: Prisma.FieldRef<"ProviderProfile", 'String'>
   readonly description: Prisma.FieldRef<"ProviderProfile", 'String'>
-  readonly cuisineType: Prisma.FieldRef<"ProviderProfile", 'String'>
+  readonly cuisineType: Prisma.FieldRef<"ProviderProfile", 'String[]'>
   readonly deliveryTime: Prisma.FieldRef<"ProviderProfile", 'String'>
   readonly address: Prisma.FieldRef<"ProviderProfile", 'String'>
+  readonly minOrder: Prisma.FieldRef<"ProviderProfile", 'Int'>
+  readonly rating: Prisma.FieldRef<"ProviderProfile", 'Float'>
+  readonly isOpen: Prisma.FieldRef<"ProviderProfile", 'Boolean'>
+  readonly tags: Prisma.FieldRef<"ProviderProfile", 'String[]'>
   readonly isVerified: Prisma.FieldRef<"ProviderProfile", 'Boolean'>
   readonly createdAt: Prisma.FieldRef<"ProviderProfile", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"ProviderProfile", 'DateTime'>
