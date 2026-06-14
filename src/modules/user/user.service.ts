@@ -25,6 +25,15 @@ const getUsersById = async (userId: string) => {
 };
 
 const updateUser = async (userId: string, data: any) => {
+
+  if(!userId) {
+    throw new Error("User not found.");
+  }
+
+  if(data.role === "admin" || data.role === "ADMIN") {
+    throw new Error("Cannot update to admin role.");
+  }
+
   const result = await prisma.user.update({
     where: {    
       id: userId,  

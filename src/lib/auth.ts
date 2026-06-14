@@ -16,8 +16,10 @@ export const auth = betterAuth({
     additionalFields: {
       role: {
         type: "string",
-        required: true,
-        input: true,
+        required: false,
+        input: false,
+        defaultValue: "CUSTOMER",
+        
       },
       phone: {
         type: "string",
@@ -35,7 +37,5 @@ export const auth = betterAuth({
       },
     },
   },
-  plugins: [
-        admin() 
-    ]
+ 
 });
