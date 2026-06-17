@@ -13,9 +13,16 @@ app.use(
     credentials: true,
   }),
 );
+app.use("/api/v1", routes);
+
+app.use("/api/auth/sign-up/email", (req, res) => {
+  return res.status(403).json({
+    message: "Use /api/users/register",
+  });
+});
 
 app.all("/api/auth/*splat", toNodeHandler(auth));
 
-app.use("/api/v1", routes);
+
 
 export default app;

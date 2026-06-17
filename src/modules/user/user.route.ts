@@ -4,6 +4,7 @@ import authorize from "../../middleware/authorize";
 
 const userRoutes = Router();
 
+userRoutes.post("/register", userController.registerUser);
 userRoutes.get("/",authorize("ADMIN") , userController.getAllUsers);
 userRoutes.get("/:id",authorize("ADMIN") , userController.getUsersById);
 userRoutes.patch("/:id",authorize("ADMIN", "CUSTOMER") , userController.updateUser);

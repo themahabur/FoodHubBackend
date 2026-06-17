@@ -1,5 +1,32 @@
+import { auth } from "../../lib/auth";
 import { prisma } from "../../lib/prisma";
 
+interface createUser {
+  name: string;
+  email: string;
+  password: string;
+  role: string;
+}
+
+const registerUser = async (data: createUser) => {
+
+  const role = data.role === "PROVIDER" ? "PROVIDER" : "CUSTOMER";
+
+
+   const user = await auth.api.signUpEmail({
+      body: {
+        name: data.name,
+        email: data.email,
+        password: data.password,
+        role,
+      },
+    });
+
+
+
+  return user;
+
+}
 const getAllUsers = async () => {
   const result = await prisma.user.findMany();
 
@@ -47,6 +74,7 @@ const updateUser = async (userId: string, data: any) => {
 };
 
 export const userService = {
+  registerUser,
   getAllUsers,
   getUsersById,
   updateUser,

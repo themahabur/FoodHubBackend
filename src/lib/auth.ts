@@ -17,9 +17,8 @@ export const auth = betterAuth({
       role: {
         type: "string",
         required: false,
-        input: false,
+        input: true,
         defaultValue: "CUSTOMER",
-        
       },
       phone: {
         type: "string",
@@ -36,6 +35,8 @@ export const auth = betterAuth({
         defaultValue: "ACTIVE",
       },
     },
+    deleteUser: {
+      enabled: true,
+    },
   },
- 
 });

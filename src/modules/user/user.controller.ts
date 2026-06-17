@@ -1,6 +1,27 @@
 import { Request, Response } from "express";
 import { userService } from "./user.service";
 
+const registerUser = async (req: Request, res: Response) => {
+  try {
+    const { name, email, password, role } = req.body;
+
+    const user = await userService.registerUser({ name, email, password, role });
+    res.send({
+      success: true,
+      message: "Registered successfully.",
+      data: user,
+      error: null,
+    });
+  } catch (error: any) {
+    res.status(500).send({
+      success: false,
+      message: error.message,
+      data: null,
+      error: "An error occurred while registering user.",
+    });
+  }
+};
+
 const getAllUsers = async (req: Request, res: Response) => {
   try {
     const users = await userService.getAllUsers();
@@ -64,6 +85,7 @@ const updateUser = async (req: Request, res: Response) => {
 };
 
 export const userController = {
+  registerUser,
   getAllUsers,
   getUsersById,
   updateUser,
