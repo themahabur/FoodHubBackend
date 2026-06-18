@@ -19,6 +19,7 @@ const registerUser = async (data: createUser) => {
         email: data.email,
         password: data.password,
         role,
+       
       },
     });
 
