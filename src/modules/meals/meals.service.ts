@@ -5,6 +5,7 @@ const getMeals = async () => {
   const meals = await prisma.meal.findMany({
     include: {
       provider: true,
+      category: true,
     },
   });
 
