@@ -53,7 +53,17 @@ const getAllProviders = async (req: Request, res: Response) => {
 
 const getProviderById = async (req: Request, res: Response) => {
   try {
-    const providerId = req.params.id as string;
+
+    if (!req.user || !req.user.id) {
+      return res.status(401).send({
+        success: false,
+        message: "Unauthorized.",
+        data: null,
+        error: null,
+      });
+    }
+    const providerId = req.user.id;
+    console.log(providerId);
     const provider = await providerService.getProviderById(providerId);
     res.send({
       success: true,

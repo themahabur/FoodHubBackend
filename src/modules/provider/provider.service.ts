@@ -61,6 +61,9 @@ const getAllProviders = async () => {
 const getProviderById = async (id: string) => {
   const provider = await prisma.providerProfile.findUnique({
     where: { id },
+    include: {
+      user: true
+    }
   });
 
   if (!provider) {

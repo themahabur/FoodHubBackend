@@ -5,8 +5,8 @@ import authorize from "../../middleware/authorize";
 
 const providerRoutes= Router();
 
-providerRoutes.get("/",  providerController.getAllProviders);
-providerRoutes.get("/:id",  providerController.getProviderById);
+providerRoutes.get("/all",  providerController.getAllProviders);
+providerRoutes.get("/", authorize( "PROVIDER"), providerController.getProviderById);
 providerRoutes.post("/", authorize( "PROVIDER"), providerController.createProvider);
 
 
