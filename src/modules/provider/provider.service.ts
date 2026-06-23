@@ -10,10 +10,7 @@ interface CreateProviderData {
   deliveryTime: string;
 }
 
-
 const createProvider = async (data: CreateProviderData, userId: string) => {
-
-
   const isProvider = await prisma.providerProfile.findUnique({
     where: {
       userId: userId,
@@ -21,37 +18,41 @@ const createProvider = async (data: CreateProviderData, userId: string) => {
   });
 
   if (isProvider) {
-    throw new Error("User is already a Provider profile cannot create another profile");
+    const result = await prisma.providerProfile.update({
+      where: {
+        userId: userId,
+      },
+      data: data,
+    });
+
+    if (!result) {
+      throw new Error("Failed to update provider profile");
+    }
+    return result;
   }
 
   const result = await prisma.providerProfile.create({
     data: {
       userId: userId,
-      businessName: data.businessName,
-      logo: data.logo,
-      address: data.address,
-      banner: data.banner,
-      description: data.description,
-      cuisineType: data.cuisineType,
-      deliveryTime: data.deliveryTime
+      ...data,
     },
   });
-
 
   if (!result) {
     throw new Error("Failed to create provider profile");
   }
 
-
-
-
   return result;
 };
 
 const getAllProviders = async () => {
-  const providers = await prisma.providerProfile.findMany();
+  const providers = await prisma.providerProfile.findMany({
+    include: {
+      user: true,
+    },
+  });
 
-  if(providers.length === 0) {
+  if (providers.length === 0) {
     throw new Error("No providers found");
   }
 
@@ -60,10 +61,10 @@ const getAllProviders = async () => {
 
 const getProviderById = async (id: string) => {
   const provider = await prisma.providerProfile.findUnique({
-    where: { id },
+    where: { userId: id },
     include: {
-      user: true
-    }
+      user: true,
+    },
   });
 
   if (!provider) {
@@ -76,5 +77,5 @@ const getProviderById = async (id: string) => {
 export const providerService = {
   createProvider,
   getAllProviders,
-  getProviderById
+  getProviderById,
 };
