@@ -2,15 +2,20 @@ import { prisma } from "../../lib/prisma";
 
 interface CreateProviderData {
   businessName: string;
-  logo: string;
-  address: string;
-  banner: string;
+  logo: string | null;
+  banner: string | null;
   description: string;
   cuisineType: string[];
   deliveryTime: string;
+  address: string;
+  minOrder: number | null;
+  isOpen: boolean;
+  tags: string[];
 }
 
 const createProvider = async (data: CreateProviderData, userId: string) => {
+  console.log("data", data, userId);
+
   const isProvider = await prisma.providerProfile.findUnique({
     where: {
       userId: userId,
