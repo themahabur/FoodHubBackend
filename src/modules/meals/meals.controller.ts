@@ -118,8 +118,40 @@ const deleteMeal = async (req: Request, res: Response) => {
   }
 };
 
+const getMealsByProvider = async (req: Request, res: Response) => {
+  try {
+    const userId = req.user?.id;
+
+    if (!userId) {
+      return res.status(401).send({
+        success: false,
+        message: "Unauthorized.",
+        data: null,
+        error: null,
+      });
+    }
+
+    const meals = await mealsService.getMealsByProvider(userId as string);
+
+    res.send({
+      success: true,
+      message: "Meals fetched successfully.",
+      data: meals,
+      error: null,
+    });
+  } catch (error: any) {
+    res.status(500).send({
+      success: false,
+      message: "An error occurred while fetching meals.",
+      data: null,
+      error: error.message,
+    })
+  }
+};
+
 export const mealsController = {
   getMeals,
+  getMealsByProvider,
   getMealById,
   createMeal,
   updateMeal,

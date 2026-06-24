@@ -13,8 +13,6 @@ const getMeals = async () => {
     throw new Error("No meals found");
   }
 
-
-
   return meals;
 };
 
@@ -86,8 +84,37 @@ const deleteMeal = async (mealId: string) => {
   return meal;
 };
 
+const getMealsByProvider = async (userId: string) => {
+
+
+  const provider = await prisma.providerProfile.findUnique({
+    where: {
+      userId: userId,
+    },
+  });
+
+  if (!provider) {
+    throw new Error("Provider not found");
+  }
+
+  const meals = await prisma.meal.findMany({
+    where: {
+      providerId: provider.id,
+    },
+    include: {
+      provider: true,
+      category: true,
+    },
+  });
+  if (meals.length === 0) {
+    throw new Error("No meals found");
+  }
+  return meals;
+};
+
 export const mealsService = {
   getMeals,
+  getMealsByProvider,
   getMealById,
   createMeal,
   updateMeal,
